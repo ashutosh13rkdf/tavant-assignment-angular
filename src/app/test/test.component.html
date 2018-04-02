@@ -1,0 +1,47 @@
+<table id="tbl">
+    <tr>
+      <td></td>
+      <td><b>Loan#</b></td>
+      <td><b>Borrower</b></td>
+      <td><b>Loan Amount</b></td>
+      <td><b>Start Date</b></td>
+      <td><b>Decline</b></td>
+      <td><b>Loan Status</b></td>
+    </tr>
+    <ng-container  *ngFor="let loan of loans" >
+    <tr *ngIf="(loan.loanStatus!='C')">
+        <td><input type="checkbox" name="status" (click)="onStatusChange(loan, $event)"></td>
+        <td>{{loan.loanNumber}}</td>
+        <td>{{loan.borrower}}</td>
+        <td>{{loan.loanAmount}}</td>
+        <td>
+    
+          <span *ngIf="loan.loanStatus!='D'; else elseBlock2">
+            {{loan.loanStartDate}}
+          </span>
+          
+          <ng-template #elseBlock2>
+            
+          </ng-template>
+        </td>
+        <td>
+         <span *ngIf="loan.loanStatus=='D'; else elseBlock">Y</span>
+          
+          <ng-template #elseBlock>
+            N
+          </ng-template>
+        
+        </td>
+        <td>{{loan.loanStatus}}</td>
+    </tr>
+    </ng-container>
+    
+    </table><br/>
+    <div>
+      <input type="button" (click)="updateLoanStatus('D')" name="Decline" value="Decline">
+      <input type="button" (click)="updateLoanStatus('A')" name="Approve" value="Approve">
+      <input type="button" (click)="updateLoanStatus('C')" name="Cancel" value="Cancel">
+    </div>
+    
+    
+    
