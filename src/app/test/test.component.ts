@@ -69,7 +69,7 @@ ngOnInit() {
         }
         }
     }
-    console.log(eventObj);
+
     console.log(this.loanData);
   }
 
